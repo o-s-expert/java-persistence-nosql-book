@@ -5,12 +5,9 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import org.joda.money.Money;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 
 public class Worker {
