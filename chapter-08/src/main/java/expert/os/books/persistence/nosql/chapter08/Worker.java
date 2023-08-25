@@ -8,7 +8,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Worker {
     @NotBlank(message = "Nickname cannot be blank")
@@ -36,4 +38,73 @@ public class Worker {
     @Max(value = 3, message = "You cannot select up to 3 skills")
     private List<String> skills;
 
+    Worker(String nickname, String name, boolean working,
+                  String bio, int age,
+                  String email, List<String> skills) {
+        this.nickname = nickname;
+        this.name = name;
+        this.working = working;
+        this.bio = bio;
+        this.age = age;
+        this.email = email;
+        this.skills = skills;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isWorking() {
+        return working;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public List<String> getSkills() {
+        return Collections.unmodifiableList(skills);
+    }
+
+    @Override
+    public String toString() {
+        return "Worker{" +
+                "nickname='" + nickname + '\'' +
+                ", name='" + name + '\'' +
+                ", working=" + working +
+                ", bio='" + bio + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", skills=" + skills +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Worker worker = (Worker) o;
+        return Objects.equals(nickname, worker.nickname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nickname);
+    }
 }
