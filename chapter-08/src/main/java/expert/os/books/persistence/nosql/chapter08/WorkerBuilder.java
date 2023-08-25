@@ -10,8 +10,6 @@ public class WorkerBuilder {
     private String bio;
     private int age;
     private String email;
-    private List<String> skills = Collections.emptyList();
-
     WorkerBuilder() {
     }
 
@@ -45,12 +43,7 @@ public class WorkerBuilder {
         return this;
     }
 
-    public WorkerBuilder skills(List<String> skills) {
-        this.skills = skills;
-        return this;
-    }
-
     public Worker build() {
-        return new Worker(nickname, name, working, bio, age, email, skills);
+        return new Worker(nickname, name, working, bio, age, email);
     }
 }

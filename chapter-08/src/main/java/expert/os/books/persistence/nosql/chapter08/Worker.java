@@ -34,20 +34,15 @@ public class Worker {
     @Email(message = "Email should be valid")
     private String email;
 
-    @NotEmpty(message = "Skills cannot be empty")
-    @Max(value = 3, message = "You cannot select up to 3 skills")
-    private List<String> skills;
-
     Worker(String nickname, String name, boolean working,
                   String bio, int age,
-                  String email, List<String> skills) {
+                  String email) {
         this.nickname = nickname;
         this.name = name;
         this.working = working;
         this.bio = bio;
         this.age = age;
         this.email = email;
-        this.skills = skills;
     }
 
     public String nickname() {
@@ -74,10 +69,6 @@ public class Worker {
         return email;
     }
 
-    public List<String> skills() {
-        return Collections.unmodifiableList(skills);
-    }
-
     @Override
     public String toString() {
         return "Worker{" +
@@ -87,7 +78,6 @@ public class Worker {
                 ", bio='" + bio + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
-                ", skills=" + skills +
                 '}';
     }
 
