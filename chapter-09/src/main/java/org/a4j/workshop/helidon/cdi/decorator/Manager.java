@@ -1,11 +1,11 @@
 package org.a4j.workshop.helidon.cdi.decorator;
 
-import javax.annotation.Priority;
-import javax.decorator.Decorator;
-import javax.decorator.Delegate;
-import javax.enterprise.inject.Any;
-import javax.inject.Inject;
-import javax.interceptor.Interceptor;
+import jakarta.annotation.Priority;
+import jakarta.decorator.Decorator;
+import jakarta.decorator.Delegate;
+import jakarta.enterprise.inject.Any;
+import jakarta.inject.Inject;
+import jakarta.interceptor.Interceptor;
 
 @Decorator
 @Priority(Interceptor.Priority.APPLICATION)

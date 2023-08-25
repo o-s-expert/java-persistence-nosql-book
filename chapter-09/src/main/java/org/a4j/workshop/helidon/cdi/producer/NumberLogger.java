@@ -1,6 +1,6 @@
 package org.a4j.workshop.helidon.cdi.producer;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.math.BigDecimal;
 import java.util.logging.Logger;
 

@@ -3,8 +3,8 @@ package org.a4j.workshop.helidon.cdi;
 import org.a4j.workshop.helidon.cdi.auditaded.FastSupplier;
 import org.a4j.workshop.helidon.cdi.auditaded.SlowSupplier;
 
-import javax.enterprise.inject.se.SeContainer;
-import javax.enterprise.inject.se.SeContainerInitializer;
+import jakarta.enterprise.inject.se.SeContainer;
+import jakarta.enterprise.inject.se.SeContainerInitializer;
 import java.util.function.Supplier;
 
 public class App6 {

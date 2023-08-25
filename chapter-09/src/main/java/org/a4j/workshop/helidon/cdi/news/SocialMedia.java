@@ -1,6 +1,6 @@
 package org.a4j.workshop.helidon.cdi.news;
 
-import javax.enterprise.event.Observes;
+import jakarta.enterprise.event.Observes;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 

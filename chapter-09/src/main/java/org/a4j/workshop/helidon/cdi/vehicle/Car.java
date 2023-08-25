@@ -1,6 +1,6 @@
 package org.a4j.workshop.helidon.cdi.vehicle;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.logging.Logger;

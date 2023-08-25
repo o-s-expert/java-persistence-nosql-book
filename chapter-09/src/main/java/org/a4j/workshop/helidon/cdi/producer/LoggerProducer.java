@@ -1,9 +1,9 @@
 package org.a4j.workshop.helidon.cdi.producer;
 
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Produces;
-import javax.enterprise.inject.spi.InjectionPoint;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Produces;
+import jakarta.enterprise.inject.spi.InjectionPoint;
 import java.util.logging.Logger;
 
 @ApplicationScoped

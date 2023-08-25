@@ -1,6 +1,6 @@
 package org.a4j.workshop.helidon.cdi.decorator;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import java.util.logging.Logger;
 
 @ApplicationScoped

@@ -1,6 +1,6 @@
 package org.a4j.workshop.helidon.cdi.music;
 
-import javax.enterprise.inject.Default;
+import jakarta.enterprise.inject.Default;
 
 @MusicalInstrument(InstrumentType.KEYBOARD)
 @Default

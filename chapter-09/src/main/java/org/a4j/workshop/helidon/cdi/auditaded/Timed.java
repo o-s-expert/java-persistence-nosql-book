@@ -1,6 +1,6 @@
 package org.a4j.workshop.helidon.cdi.auditaded;
 
-import javax.interceptor.InterceptorBinding;
+import jakarta.interceptor.InterceptorBinding;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 

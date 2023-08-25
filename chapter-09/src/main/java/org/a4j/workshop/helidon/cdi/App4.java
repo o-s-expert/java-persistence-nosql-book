@@ -3,8 +3,8 @@ package org.a4j.workshop.helidon.cdi;
 import org.a4j.workshop.helidon.cdi.news.Journalist;
 import org.a4j.workshop.helidon.cdi.news.News;
 
-import javax.enterprise.inject.se.SeContainer;
-import javax.enterprise.inject.se.SeContainerInitializer;
+import jakarta.enterprise.inject.se.SeContainer;
+import jakarta.enterprise.inject.se.SeContainerInitializer;
 
 public class App4 {
 

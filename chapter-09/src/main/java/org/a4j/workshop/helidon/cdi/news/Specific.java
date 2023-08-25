@@ -1,6 +1,6 @@
 package org.a4j.workshop.helidon.cdi.news;
 
-import javax.inject.Qualifier;
+import jakarta.inject.Qualifier;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 

@@ -2,8 +2,8 @@ package org.a4j.workshop.helidon.cdi;
 
 import org.a4j.workshop.helidon.cdi.decorator.Worker;
 
-import javax.enterprise.inject.se.SeContainer;
-import javax.enterprise.inject.se.SeContainerInitializer;
+import jakarta.enterprise.inject.se.SeContainer;
+import jakarta.enterprise.inject.se.SeContainerInitializer;
 
 public class App5 {
 

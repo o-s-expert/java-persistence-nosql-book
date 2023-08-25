@@ -3,8 +3,8 @@ package org.a4j.workshop.helidon.cdi;
 import org.a4j.workshop.helidon.cdi.vehicle.Car;
 import org.a4j.workshop.helidon.cdi.vehicle.Vehicle;
 
-import javax.enterprise.inject.se.SeContainer;
-import javax.enterprise.inject.se.SeContainerInitializer;
+import jakarta.enterprise.inject.se.SeContainer;
+import jakarta.enterprise.inject.se.SeContainerInitializer;
 
 public class App1 {
 
