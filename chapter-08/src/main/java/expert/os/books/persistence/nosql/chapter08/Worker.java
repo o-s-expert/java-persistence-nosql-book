@@ -34,6 +34,9 @@ public class Worker {
     @Email(message = "Email should be valid")
     private String email;
 
+    @SalaryConstraint
+    private Money salary;
+
     Worker(String nickname, String name, boolean working,
                   String bio, int age,
                   String email) {

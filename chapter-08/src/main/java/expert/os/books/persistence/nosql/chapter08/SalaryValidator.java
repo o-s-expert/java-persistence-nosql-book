@@ -7,6 +7,10 @@ public class SalaryValidator implements ConstraintValidator<SalaryConstraint, Mo
 
     @Override
     public boolean isValid(Money value, ConstraintValidatorContext context) {
+        if (value == null) {
+            return false;
+        }
+
         return false;
     }
 }
