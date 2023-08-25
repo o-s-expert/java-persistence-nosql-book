@@ -50,31 +50,31 @@ public class Worker {
         this.skills = skills;
     }
 
-    public String getNickname() {
+    public String nickname() {
         return nickname;
     }
 
-    public String getName() {
+    public String name() {
         return name;
     }
 
-    public boolean isWorking() {
+    public boolean working() {
         return working;
     }
 
-    public String getBio() {
+    public String bio() {
         return bio;
     }
 
-    public int getAge() {
+    public int age() {
         return age;
     }
 
-    public String getEmail() {
+    public String email() {
         return email;
     }
 
-    public List<String> getSkills() {
+    public List<String> skills() {
         return Collections.unmodifiableList(skills);
     }
 
