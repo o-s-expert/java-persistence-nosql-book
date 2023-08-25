@@ -35,7 +35,7 @@ public class Worker {
     @Email(message = "Email should be valid")
     private String email;
 
-    @SalaryConstraint
+    @SalaryConstraint(message = "Salary should be greater than zero")
     private Money salary;
 
     Worker(String nickname, String name, boolean working,

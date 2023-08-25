@@ -48,8 +48,9 @@ public class WorkerBuilder {
         return this;
     }
 
-    public void salary(Money salary) {
+    public WorkerBuilder salary(Money salary) {
         this.salary = salary;
+        return this;
     }
 
     public Worker build() {
