@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import org.joda.money.Money;
 
 import java.util.Collections;
 import java.util.List;
@@ -39,13 +40,14 @@ public class Worker {
 
     Worker(String nickname, String name, boolean working,
                   String bio, int age,
-                  String email) {
+                  String email, Money salary) {
         this.nickname = nickname;
         this.name = name;
         this.working = working;
         this.bio = bio;
         this.age = age;
         this.email = email;
+        this.salary = salary;
     }
 
     public String nickname() {
@@ -72,6 +74,10 @@ public class Worker {
         return email;
     }
 
+    public Money salary() {
+        return salary;
+    }
+
     @Override
     public String toString() {
         return "Worker{" +
@@ -81,6 +87,7 @@ public class Worker {
                 ", bio='" + bio + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
+                ", salary=" + salary +
                 '}';
     }
 

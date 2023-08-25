@@ -1,5 +1,7 @@
 package expert.os.books.persistence.nosql.chapter08;
 
+import org.joda.money.Money;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -10,6 +12,9 @@ public class WorkerBuilder {
     private String bio;
     private int age;
     private String email;
+
+    private Money salary;
+
     WorkerBuilder() {
     }
 
@@ -43,7 +48,11 @@ public class WorkerBuilder {
         return this;
     }
 
+    public void salary(Money salary) {
+        this.salary = salary;
+    }
+
     public Worker build() {
-        return new Worker(nickname, name, working, bio, age, email);
+        return new Worker(nickname, name, working, bio, age, email, salary);
     }
 }
