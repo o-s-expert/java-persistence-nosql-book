@@ -20,7 +20,7 @@ class WorkerTest {
 
     @Test
     public void shouldNotCreateWorkerWithBlankNickname() {
-        Worker worker = new WorkerBuilder()
+        Worker worker = Worker.builder()
                 .nickname("")
                 .name("John Doe")
                 .working(true)

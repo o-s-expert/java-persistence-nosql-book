@@ -97,4 +97,8 @@ public class Worker {
     public int hashCode() {
         return Objects.hash(nickname);
     }
+
+    public static WorkerBuilder builder() {
+        return new WorkerBuilder();
+    }
 }
