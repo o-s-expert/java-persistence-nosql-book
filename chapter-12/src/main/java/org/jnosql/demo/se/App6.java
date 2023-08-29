@@ -12,36 +12,33 @@
 package org.jnosql.demo.se;
 
 
+import jakarta.nosql.keyvalue.KeyValueTemplate;
+
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
-import org.eclipse.jnosql.databases.redis.communication.Ranking;
-import org.eclipse.jnosql.databases.redis.communication.RedisBucketManagerFactory;
-import org.eclipse.jnosql.databases.redis.communication.SortedSet;
+import java.util.Arrays;
+import java.util.Optional;
 
-import java.util.List;
-import java.util.Map;
+public class App6 {
 
-public class App4 {
+    private static final User USER = User.builder().
+            phones(Arrays.asList("234", "432"))
+            .username("username")
+            .name("Name")
+            .build();
 
     public static void main(String[] args) {
 
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
-            RedisBucketManagerFactory factory = container.select(RedisBucketManagerFactory.class).get();
-            SortedSet game = factory.getSortedSet("game");
-            game.add("Otavio", 10);
-            game.add("Luiz", 20);
-            game.add("Ada", 30);
-            game.add(Ranking.of("Poliana", 40));
-
-            List<Ranking> ranking = game.getRanking();
-            System.out.println("Ranking: " + ranking);
-
-            System.out.println("The reverse ranking: " + game.getRevRanking());
-
+            KeyValueTemplate template = container.select(KeyValueTemplate.class).get();
+            User userSaved = template.put(USER);
+            System.out.println("User saved: " + userSaved);
+            Optional<User> user = template.get("username", User.class);
+            System.out.println("Entity found: " + user);
 
         }
     }
 
-    private App4() {
+    private App6() {
     }
 }

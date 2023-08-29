@@ -19,7 +19,7 @@ import jakarta.enterprise.inject.se.SeContainerInitializer;
 import java.util.Arrays;
 import java.util.Optional;
 
-public class App5 {
+public class App7 {
 
     private static final User USER = User.builder().
             phones(Arrays.asList("234", "432"))
@@ -39,6 +39,6 @@ public class App5 {
         }
     }
 
-    private App5() {
+    private App7() {
     }
 }
