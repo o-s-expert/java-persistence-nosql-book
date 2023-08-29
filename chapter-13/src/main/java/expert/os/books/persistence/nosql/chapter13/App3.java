@@ -27,7 +27,7 @@ import static org.eclipse.jnosql.mapping.DatabaseQualifier.ofColumn;
 public class App3 {
 
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args){
 
         try(SeContainer container = SeContainerInitializer.newInstance().initialize()) {
 
