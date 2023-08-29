@@ -16,7 +16,9 @@ import jakarta.nosql.Column;
 import jakarta.nosql.Entity;
 import jakarta.nosql.Id;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 
@@ -30,30 +32,27 @@ public class Person {
     private String name;
 
     @Column
-    private List<String> phones;
-
-
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-
-    public List<String> getPhones() {
-        return phones;
-    }
-
+    private Map<String, String> contacts;
 
     public Person() {
     }
 
-    Person(long id, String name, List<String> phones) {
+    Person(long id, String name, Map<String, String> contacts) {
         this.id = id;
         this.name = name;
-        this.phones = phones;
+        this.contacts = contacts;
+    }
+
+    public long id() {
+        return id;
+    }
+
+    public String name() {
+        return name;
+    }
+
+    public Map<String, String> contacts() {
+        return Collections.unmodifiableMap(contacts);
     }
 
     @Override
@@ -78,7 +77,7 @@ public class Person {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", phones=" + phones +
+                ", contacts=" + contacts +
                 '}';
     }
 

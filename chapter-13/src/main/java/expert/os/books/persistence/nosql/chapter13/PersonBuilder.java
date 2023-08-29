@@ -10,12 +10,14 @@
  */
 package expert.os.books.persistence.nosql.chapter13;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class PersonBuilder {
     private long id;
     private String name;
-    private List<String> phones;
+    private Map<String, String> contacts = Collections.emptyMap();
     PersonBuilder() {
     }
 
@@ -29,12 +31,12 @@ public class PersonBuilder {
         return this;
     }
 
-    public PersonBuilder phones(List<String> phones) {
-        this.phones = phones;
+    public PersonBuilder contacts(Map<String, String> contacts) {
+        this.contacts = contacts;
         return this;
     }
 
     public Person build() {
-        return new Person(id, name, phones);
+        return new Person(id, name, contacts);
     }
 }
