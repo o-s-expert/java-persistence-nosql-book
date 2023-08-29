@@ -27,10 +27,10 @@ public class App6 {
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
             KeyValueTemplate template = container.select(KeyValueTemplate.class).get();
             User otaviojava = User.builder().phones(Arrays.asList("234", "432"))
-                    .username("otaviojava").name("Name").build();
+                    .username("otaviojava").name("Otavio Santana").build();
 
             template.put(otaviojava);
-            Optional<User> user = template.get("username", User.class);
+            Optional<User> user = template.get("otaviojava", User.class);
             System.out.println("Entity found: " + user);
 
         }

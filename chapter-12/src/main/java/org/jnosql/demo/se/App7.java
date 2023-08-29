@@ -31,8 +31,12 @@ public class App7 {
 
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
 
-            UserRepository repository = container.select(UserRepository.class, DatabaseQualifier.ofKeyValue()).get();
-            repository.save(USER);
+            UserRepository repository = container.select(UserRepository.class).get();
+
+            User ada = User.builder().
+                    phones(Arrays.asList("234", "432"))
+                    .username("ada").name("Ada Lovelace").build();
+            repository.save(ada);
             Optional<User> user = repository.findById("username");
             System.out.println("User found: " + user);
             System.out.println("The user found: " + repository.existsById("username"));
