@@ -21,7 +21,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <weld.se.core.version>5.1.1.SP2</weld.se.core.version>
-        <jnosql.version>1.0.1</jnosql.version>
+        <jnosql.version>1.0.2-SNAPSHOT</jnosql.version>
         <maven.compile.version>3.11.0</maven.compile.version>
         <maven.surefire.plugin.version>3.1.2</maven.surefire.plugin.version>
     </properties>

@@ -16,36 +16,28 @@ import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
 import org.eclipse.jnosql.databases.redis.communication.RedisBucketManagerFactory;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import java.util.Set;
 
-public class App2 {
+public class App3 {
 
     public static void main(String[] args) {
 
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
             RedisBucketManagerFactory factory = container.select(RedisBucketManagerFactory.class).get();
-            Queue<String> orders = factory.getQueue("orders", String.class);
-            orders.clear();
-            orders.add("Phone");
-            orders.add("Tablet");
-            orders.add("book");
-            // remove the element at the front of the queue
-            String front = orders.remove();
-            System.out.println("Front: " + front);
-            // peek at the element at the front of the queue
-            String peeked = orders.peek();
-            System.out.println("Peeked element: " + peeked);
-            System.out.println("the result");
-            orders.forEach(System.out::println);
+            Map<Integer, String> basket = factory.getMap("basket", Integer.class, String.class);
+            basket.clear();
+            basket.put(1, "Banana");
+            basket.put(2, "Watermelon");
+            basket.put(4, "Apple");
 
+            System.out.println("Basket: ");
+            basket.forEach((k, v) -> System.out.println(k + " - " + v));
 
 
         }
     }
 
-    private App2() {
+    private App3() {
     }
 }

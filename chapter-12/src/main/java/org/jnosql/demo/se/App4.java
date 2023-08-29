@@ -12,35 +12,33 @@
 package org.jnosql.demo.se;
 
 
+import jakarta.nosql.keyvalue.KeyValueTemplate;
+
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
-import org.eclipse.jnosql.databases.redis.communication.RedisBucketManagerFactory;
+import java.util.Arrays;
+import java.util.Optional;
 
-import java.util.List;
-import java.util.Set;
+public class App4 {
 
-public class App {
+    private static final User USER = User.builder().
+            phones(Arrays.asList("234", "432"))
+            .username("username")
+            .name("Name")
+            .build();
 
     public static void main(String[] args) {
 
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
-            RedisBucketManagerFactory factory = container.select(RedisBucketManagerFactory.class).get();
-            List<String> names = factory.getList("names", String.class);
-            Set<String> fruits = factory.getSet("fruits", String.class);
-
-            names.addAll(List.of("Otavio", "Luiz", "Ada", "Poliana", "Otavio"));
-
-            fruits.addAll(List.of("Banana", "Banana", "Apple", "Watermelon", "Banana", "Apple"));
-
-            System.out.println("Names: ");
-            names.forEach(System.out::println);
-            System.out.println("Fruits: ");
-            fruits.forEach(System.out::println);
-
+            KeyValueTemplate template = container.select(KeyValueTemplate.class).get();
+            User userSaved = template.put(USER);
+            System.out.println("User saved: " + userSaved);
+            Optional<User> user = template.get("username", User.class);
+            System.out.println("Entity found: " + user);
 
         }
     }
 
-    private App() {
+    private App4() {
     }
 }
