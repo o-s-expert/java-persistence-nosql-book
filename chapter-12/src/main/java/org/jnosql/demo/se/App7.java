@@ -12,12 +12,9 @@
 package org.jnosql.demo.se;
 
 
-import org.eclipse.jnosql.mapping.DatabaseQualifier;
 
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
