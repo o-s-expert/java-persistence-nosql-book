@@ -14,6 +14,7 @@ package org.jnosql.demo.se;
 
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
+import org.eclipse.jnosql.communication.keyvalue.BucketManagerFactory;
 import org.eclipse.jnosql.databases.redis.communication.RedisBucketManagerFactory;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class App2 {
     public static void main(String[] args) {
 
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
-            RedisBucketManagerFactory factory = container.select(RedisBucketManagerFactory.class).get();
+            BucketManagerFactory factory = container.select(RedisBucketManagerFactory.class).get();
             Queue<String> orders = factory.getQueue("orders", String.class);
             orders.clear();
             orders.add("Phone");
@@ -40,9 +41,6 @@ public class App2 {
             System.out.println("Peeked element: " + peeked);
             System.out.println("the result");
             orders.forEach(System.out::println);
-
-
-
         }
     }
 

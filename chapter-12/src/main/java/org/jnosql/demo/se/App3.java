@@ -14,6 +14,7 @@ package org.jnosql.demo.se;
 
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
+import org.eclipse.jnosql.communication.keyvalue.BucketManagerFactory;
 import org.eclipse.jnosql.databases.redis.communication.RedisBucketManagerFactory;
 
 import java.util.Map;
@@ -24,7 +25,7 @@ public class App3 {
     public static void main(String[] args) {
 
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
-            RedisBucketManagerFactory factory = container.select(RedisBucketManagerFactory.class).get();
+            BucketManagerFactory factory = container.select(RedisBucketManagerFactory.class).get();
             Map<Integer, String> basket = factory.getMap("basket", Integer.class, String.class);
             basket.clear();
             basket.put(1, "Banana");
