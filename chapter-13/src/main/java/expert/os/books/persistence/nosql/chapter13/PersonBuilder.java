@@ -16,8 +16,6 @@ public class PersonBuilder {
     private long id;
     private String name;
     private List<String> phones;
-    private String ignore;
-
     PersonBuilder() {
     }
 
@@ -36,12 +34,7 @@ public class PersonBuilder {
         return this;
     }
 
-    public PersonBuilder ignore(String ignore) {
-        this.ignore = ignore;
-        return this;
-    }
-
     public Person build() {
-        return new Person(id, name, phones, ignore);
+        return new Person(id, name, phones);
     }
 }
