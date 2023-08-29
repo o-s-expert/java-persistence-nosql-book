@@ -13,11 +13,13 @@ package expert.os.books.persistence.nosql.chapter13;
 
 
 import jakarta.nosql.Column;
+import jakarta.nosql.Entity;
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+@Entity
 public class Director {
 
     @Column

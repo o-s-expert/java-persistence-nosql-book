@@ -14,6 +14,7 @@ package expert.os.books.persistence.nosql.chapter13;
 
 import jakarta.nosql.Column;
 import jakarta.nosql.Entity;
+import jakarta.nosql.Id;
 import org.eclipse.jnosql.databases.cassandra.mapping.UDT;
 
 import java.util.Objects;
@@ -21,7 +22,7 @@ import java.util.Objects;
 @Entity
 public class Movie {
 
-    @Column
+    @Id("name")
     private String name;
 
     @Column

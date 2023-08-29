@@ -16,6 +16,8 @@ package expert.os.books.persistence.nosql.chapter13;
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
 
+import java.util.List;
+
 public class App4 {
 
 
@@ -44,9 +46,9 @@ public class App4 {
                     .add("Spectre").add("Skyfall").add("American Beauty").build());
 
 
-
-            System.out.println("Movies from 1999: " + repository.findByAge(1999));
+            repository.saveAll(List.of(matrix, fightClub, americanBeauty));
             System.out.println("Find all: " + repository.findAllQuery());
+            System.out.println("Movies from 1999: " + repository.findByAge(1999));
 
 
         }

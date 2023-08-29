@@ -15,6 +15,8 @@ package expert.os.books.persistence.nosql.chapter13;
 import jakarta.data.repository.CrudRepository;
 import jakarta.data.repository.Repository;
 
+import java.util.List;
+
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
