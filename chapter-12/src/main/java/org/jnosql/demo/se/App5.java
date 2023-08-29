@@ -12,30 +12,34 @@
 package org.jnosql.demo.se;
 
 
-import jakarta.nosql.keyvalue.KeyValueTemplate;
-
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
-import java.util.Arrays;
-import java.util.Optional;
+import org.eclipse.jnosql.databases.redis.communication.Counter;
+import org.eclipse.jnosql.databases.redis.communication.Ranking;
+import org.eclipse.jnosql.databases.redis.communication.RedisBucketManagerFactory;
+import org.eclipse.jnosql.databases.redis.communication.SortedSet;
 
-public class App6 {
+import java.util.List;
 
+public class App5 {
 
     public static void main(String[] args) {
 
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
-            KeyValueTemplate template = container.select(KeyValueTemplate.class).get();
-            User otaviojava = User.builder().phones(Arrays.asList("234", "432"))
-                    .username("otaviojava").name("Name").build();
+            RedisBucketManagerFactory factory = container.select(RedisBucketManagerFactory.class).get();
+            Counter home = factory.getCounter("home");
+            Counter products = factory.getCounter("products");
+            home.increment();
+            products.increment();
+            products.increment(3L);
 
-            template.put(otaviojava);
-            Optional<User> user = template.get("username", User.class);
-            System.out.println("Entity found: " + user);
+            System.out.println("Home: " + home.get());
+            System.out.println("Products: " + products.get());
+
 
         }
     }
 
-    private App6() {
+    private App5() {
     }
 }
