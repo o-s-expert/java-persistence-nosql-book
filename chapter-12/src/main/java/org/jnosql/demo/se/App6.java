@@ -17,7 +17,9 @@ import jakarta.nosql.keyvalue.KeyValueTemplate;
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 public class App6 {
 
@@ -26,8 +28,9 @@ public class App6 {
 
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
             KeyValueTemplate template = container.select(KeyValueTemplate.class).get();
-            User otaviojava = User.builder().phones(Arrays.asList("234", "432"))
-                    .username("otaviojava").name("Otavio Santana").build();
+            User otaviojava = User.builder().username("otaviojava").name("Otavio Santana")
+                    .languages(Set.of("Portuguese", "English", "Spanish", "Italian", "French"))
+                    .settings(Map.of("location", "Portugal", "currency", "EUR")).build();
 
             template.put(otaviojava);
             Optional<User> user = template.get("otaviojava", User.class);

@@ -17,7 +17,10 @@ import org.eclipse.jnosql.mapping.DatabaseQualifier;
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 public class App7 {
 
@@ -27,13 +30,14 @@ public class App7 {
 
             UserRepository repository = container.select(UserRepository.class).get();
 
-            User ada = User.builder().
-                    phones(Arrays.asList("234", "432"))
-                    .username("ada").name("Ada Lovelace").build();
+            User ada = User.builder().username("ada").name("Ada Lovelace")
+                    .languages(Set.of("Latin")).settings(Map.of("currency", "food")).build();
             repository.save(ada);
-            Optional<User> user = repository.findById("username");
+            Optional<User> user = repository.findById("ada");
             System.out.println("User found: " + user);
-            System.out.println("The user found: " + repository.existsById("username"));
+            System.out.println("Exist? " + repository.existsById("ada"));
+            repository.deleteById("ada");
+            System.out.println("Exist? " + repository.existsById("ada"));
         }
     }
 
