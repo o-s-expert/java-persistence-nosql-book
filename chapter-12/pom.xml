@@ -24,6 +24,8 @@
         <jnosql.version>1.0.2-SNAPSHOT</jnosql.version>
         <maven.compile.version>3.11.0</maven.compile.version>
         <maven.surefire.plugin.version>3.1.2</maven.surefire.plugin.version>
+        <yasson.version>3.0.3</yasson.version>
+        <smallrye.config.version>3.2.1</smallrye.config.version>
     </properties>
 
     <dependencies>
@@ -40,14 +42,12 @@
         <dependency>
             <groupId>org.eclipse</groupId>
             <artifactId>yasson</artifactId>
-            <version>3.0.3</version>
-            <scope>compile</scope>
+            <version>${yasson.version}</version>
         </dependency>
         <dependency>
             <groupId>io.smallrye.config</groupId>
             <artifactId>smallrye-config-core</artifactId>
-            <version>3.2.1</version>
-            <scope>compile</scope>
+            <version>${smallrye.config.version}</version>
         </dependency>
     </dependencies>
 
