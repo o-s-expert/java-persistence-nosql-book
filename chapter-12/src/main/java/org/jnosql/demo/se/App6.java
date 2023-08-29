@@ -16,15 +16,18 @@ import jakarta.nosql.keyvalue.KeyValueTemplate;
 
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
+
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class App6 {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
             KeyValueTemplate template = container.select(KeyValueTemplate.class).get();
@@ -32,7 +35,17 @@ public class App6 {
                     .languages(Set.of("Portuguese", "English", "Spanish", "Italian", "French"))
                     .settings(Map.of("location", "Portugal", "currency", "EUR")).build();
 
+
+            User poliana = User.builder().username("polianapo").name("Poliana Santana")
+                    .languages(Set.of("Portuguese", "English"))
+                    .settings(Map.of("location", "Portugal", "currency", "EUR")).build();
+
             template.put(otaviojava);
+            template.put(poliana, Duration.ofSeconds(1));
+            System.out.println("Find Poliana : " + template.get("polianapo", User.class));
+
+            TimeUnit.SECONDS.sleep(2L);
+            System.out.println("Find Poliana : " + template.get("polianapo", User.class));
             Optional<User> user = template.get("otaviojava", User.class);
             System.out.println("Entity found: " + user);
 
