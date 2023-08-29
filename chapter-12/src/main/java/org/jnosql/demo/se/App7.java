@@ -21,12 +21,6 @@ import java.util.Optional;
 
 public class App7 {
 
-    private static final User USER = User.builder().
-            phones(Arrays.asList("234", "432"))
-            .username("username")
-            .name("Name")
-            .build();
-
     public static void main(String[] args) {
 
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {

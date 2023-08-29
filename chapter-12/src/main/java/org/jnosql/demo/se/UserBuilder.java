@@ -11,7 +11,9 @@
 
 package org.jnosql.demo.se;
 
-import java.util.List;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
 
 
 public class UserBuilder {
@@ -20,7 +22,9 @@ public class UserBuilder {
 
     private String name;
 
-    private List<String> phones;
+    private Map<String, String> settings = Collections.emptyMap();
+
+    private Set<String> languages = Collections.emptySet();
 
     public UserBuilder username(String username) {
         this.username = username;
@@ -33,12 +37,17 @@ public class UserBuilder {
     }
 
 
-    public UserBuilder phones(List<String> phones) {
-        this.phones = phones;
+    public UserBuilder settings(Map<String, String> settings) {
+        this.settings = settings;
+        return this;
+    }
+
+    public UserBuilder languages(Set<String> languages) {
+        this.languages = languages;
         return this;
     }
 
     public User build() {
-        return new User(username, name, phones);
+        return new User(username, name, settings, languages);
     }
 }

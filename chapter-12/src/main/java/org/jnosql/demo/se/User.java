@@ -16,8 +16,11 @@ import jakarta.nosql.Entity;
 import jakarta.nosql.Id;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -29,29 +32,36 @@ public class User implements Serializable {
 
     private String name;
 
-    private List<String> phones;
+    private Map<String, String> settings;
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<String> getPhones() {
-        return phones;
-    }
+    private Set<String> languages;
 
     public User() {
     }
 
-    User(String userName, String name, List<String> phones) {
+    User(String userName, String name, Map<String, String> settings,
+         Set<String> languages) {
         this.userName = userName;
         this.name = name;
-        this.phones = phones;
+        this.settings = settings;
+        this.languages = languages;
     }
 
+    public String userName() {
+        return userName;
+    }
+
+    public String name() {
+        return name;
+    }
+
+    public Map<String, String> settings() {
+        return settings;
+    }
+
+    public Set<String> languages() {
+        return languages;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -72,12 +82,12 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("User{");
-        sb.append("userName='").append(userName).append('\'');
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", phones=").append(phones);
-        sb.append('}');
-        return sb.toString();
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", name='" + name + '\'' +
+                ", settings=" + settings +
+                ", languages=" + languages +
+                '}';
     }
 
     public static UserBuilder builder() {
