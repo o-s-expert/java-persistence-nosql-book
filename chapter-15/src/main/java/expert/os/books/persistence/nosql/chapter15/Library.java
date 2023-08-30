@@ -1,4 +1,4 @@
-package expert.os.books.persistence.nosql.chapter14;
+package expert.os.books.persistence.nosql.chapter15;
 
 import jakarta.data.repository.PageableRepository;
 import jakarta.data.repository.Repository;

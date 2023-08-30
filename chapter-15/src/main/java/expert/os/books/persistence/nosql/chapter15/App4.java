@@ -9,25 +9,22 @@
  * You may elect to redistribute this code under either of these licenses.
  */
 
-package expert.os.books.persistence.nosql.chapter14;
+package expert.os.books.persistence.nosql.chapter15;
 
 
 import com.github.javafaker.Faker;
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
-import jakarta.nosql.document.DocumentTemplate;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class App3 {
+public class App4 {
 
 
     public static void main(String[] args) {
 
         ThreadLocalRandom random = ThreadLocalRandom.current();
-        long id = random.nextLong();
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
             Faker faker = new Faker();
             Address address = new Address(faker.address().streetName(), faker.address().city());
@@ -37,20 +34,17 @@ public class App3 {
                     .withName(faker.name().fullName())
                     .withAddress(address)
                     .withJob(job)
-                    .withId(id).build();
+                    .withId(random.nextLong()).build();
 
-            DocumentTemplate template = container.select(DocumentTemplate.class).get();
-            Author saved = template.insert(author);
-            System.out.println("Person saved" + saved);
+            AuthorRepository template = container.select(AuthorRepository.class).get();
+             template.save(author);
 
-            List<Author> people = template.select(Author.class)
-                    .where("address.city").eq(address.getCity()).result();
-
-            System.out.println("Entities found: " + people);
+            System.out.println("The entity find: " + template.findByName(author.getName()));
+            System.out.println("The entity find: " + template.findByPhones(author.getPhones().get(0)).toList());
 
         }
     }
 
-    private App3() {
+    private App4() {
     }
 }
