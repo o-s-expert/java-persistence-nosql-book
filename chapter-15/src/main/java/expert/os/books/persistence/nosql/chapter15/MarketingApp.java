@@ -20,9 +20,6 @@ import org.eclipse.jnosql.mapping.graph.GraphTemplate;
 import java.util.List;
 
 import static expert.os.books.persistence.nosql.chapter15.Person.builder;
-import static java.util.stream.Collectors.toList;
-import static org.apache.tinkerpop.gremlin.process.traversal.P.between;
-import static org.apache.tinkerpop.gremlin.process.traversal.P.gte;
 
 public final class MarketingApp {
 
