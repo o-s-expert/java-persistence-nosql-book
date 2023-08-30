@@ -34,66 +34,33 @@ public final class MarketingApp {
     public static void main(String[] args) {
 
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
-            GraphTemplate graph = container.select(GraphTemplate.class).get();
 
-            graph.insert(builder().withAge(30L).withName("Banner")
+            PersonService service = container.select(PersonService.class).get();
+
+            Person banner = service.save(builder().withAge(30L).withName("Banner")
                     .withOccupation("Developer").withSalary(3_000D).build());
 
-            graph.insert(builder().withAge(32L).withName("Natalia")
+            Person natalia = service.save(builder().withAge(32L).withName("Natalia")
                     .withOccupation("Developer").withSalary(5_000D).build());
 
-            graph.insert(builder().withAge(40L).withName("Rose")
+            Person rose = service.save(builder().withAge(40L).withName("Rose")
                     .withOccupation("Design").withSalary(1_000D).build());
 
-            graph.insert(builder().withAge(22L).withName("tony")
+            Person tony =service.save(builder().withAge(22L).withName("tony")
                     .withOccupation("Developer").withSalary(4_500D).build());
 
+            service.love(tony, rose);
+            service.knows(tony, natalia);
+            service.knows(natalia, rose);
+            service.knows(banner, rose);
 
-            Person banner = getPerson("Banner", graph);
+            List<Person> developers = service.developers();
 
-            Person natalia = getPerson("Natalia", graph);
+            List<Person> peopleWhoDeveloperKnows =service.whoDevelopersKnows();
 
-            Person rose = getPerson("Rose", graph);
+            List<Person> both = service.both();
 
-            Person tony = getPerson("tony", graph);
-
-            graph.edge(tony, "knows", rose).add("feel", "love");
-            graph.edge(tony, "knows", natalia);
-
-            graph.edge(natalia, "knows", rose);
-            graph.edge(banner, "knows", rose);
-
-            List<Person> developers = graph.traversalVertex()
-                    .has("occupation", "Developer")
-                    .<Person>result().toList();
-
-            List<Person> peopleWhoDeveloperKnows = graph.traversalVertex()
-                    .has("salary", gte(3_000D))
-                    .has("age", between(20, 25))
-                    .has("occupation", "Developer")
-                    .out("knows")
-                    .<Person>result().toList();
-
-            List<Person> both = graph.traversalVertex()
-                    .has("salary", gte(3_000D))
-                    .has("age", between(20, 25))
-                    .has("occupation", "Developer")
-                    .outE("knows")
-                    .bothV()
-                    .<Person>result()
-                    .distinct()
-                    .toList();
-
-            List<Person> couple = graph.traversalVertex()
-                    .has("salary", gte(3_000D))
-                    .has("age", between(20, 25))
-                    .has("occupation", "Developer")
-                    .outE("knows")
-                    .has("feel", "love")
-                    .bothV()
-                    .<Person>result()
-                    .distinct()
-                    .toList();
+            List<Person> couple = service.couple();
 
             System.out.println("Developers has salary greater than 3000 and age between 20 and 25: " + developers);
             System.out.println("Person who the Developers target know: " + peopleWhoDeveloperKnows);
@@ -102,13 +69,5 @@ public final class MarketingApp {
 
         }
     }
-
-    private static Person getPerson(String name, GraphTemplate graph) {
-        return graph.traversalVertex().hasLabel("Person")
-                .has("name", name)
-                .<Person>next()
-                .orElseThrow(() -> new IllegalStateException("Entity does not find"));
-    }
-
 }
 
