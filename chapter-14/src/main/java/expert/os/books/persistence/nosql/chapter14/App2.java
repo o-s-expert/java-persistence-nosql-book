@@ -45,6 +45,8 @@ public class App2 {
             var pageable2 = pageable.next();
             var page2 = library.findAll(pageable2);
             System.out.println("Page 2: " + page2.content());
+            System.out.println("The result: ");
+            library.findByTitle("Effective Java").forEach(System.out::println);
 
         }
     }
