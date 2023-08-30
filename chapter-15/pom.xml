@@ -26,13 +26,29 @@
         <maven.surefire.plugin.version>3.1.2</maven.surefire.plugin.version>
         <yasson.version>3.0.3</yasson.version>
         <smallrye.config.version>3.2.1</smallrye.config.version>
+        <tinkerpop.version>3.7.0</tinkerpop.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.github.javafaker</groupId>
-            <artifactId>javafaker</artifactId>
-            <version>1.0.2</version>
+            <groupId>org.eclipse.jnosql.mapping</groupId>
+            <artifactId>jnosql-graph-connections</artifactId>
+            <version>${jnosql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.steelbridgelabs.oss</groupId>
+            <artifactId>neo4j-gremlin-bolt</artifactId>
+            <version>0.4.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tinkerpop</groupId>
+            <artifactId>gremlin-core</artifactId>
+            <version>${tinkerpop.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j.driver</groupId>
+            <artifactId>neo4j-java-driver</artifactId>
+            <version>4.4.12</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.weld.se</groupId>
