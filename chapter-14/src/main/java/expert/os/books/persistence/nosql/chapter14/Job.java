@@ -59,10 +59,9 @@ public class Job {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Job{");
-        sb.append("salary=").append(salary);
-        sb.append(", ocupation='").append(occupation).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "Job{" +
+                "salary=" + salary +
+                ", occupation='" + occupation + '\'' +
+                '}';
     }
 }

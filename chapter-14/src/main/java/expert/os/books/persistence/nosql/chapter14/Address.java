@@ -69,4 +69,12 @@ public class Address {
 
         return Objects.hash(street, city);
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }
