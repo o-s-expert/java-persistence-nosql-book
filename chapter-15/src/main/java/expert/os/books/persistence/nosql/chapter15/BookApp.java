@@ -27,92 +27,47 @@ public final class BookApp {
     public static void main(String[] args) {
 
         try (SeContainer container = SeContainerInitializer.newInstance().initialize()) {
-            GraphTemplate graph = container.select(GraphTemplate.class).get();
-            Graph thinkerpop = container.select(Graph.class).get();
 
-            graph.insert(Category.of("Software"));
-            graph.insert(Category.of("Romance"));
+            BookService service = container.select(BookService.class).get();
 
-            graph.insert(Category.of("Java"));
-            graph.insert(Category.of("NoSQL"));
-            graph.insert(Category.of("Micro Service"));
+            Category software = service.category("Software");
+            Category romance = service.category("Romance");
+            Category java = service.category("Java");
+            Category nosql =service.category("NoSQL");
+            Category microService =service.category("Micro Service");
 
-            graph.insert(Book.of("Effective Java"));
-            graph.insert(Book.of("NoSQL Distilled"));
-            graph.insert(Book.of("Migrating to Microservice Databases"));
-            graph.insert(Book.of("The Shack"));
-
-            Category software = getCategory("Software", graph);
-            Category romance = getCategory("Romance", graph);
-
-            Category java = getCategory("Java", graph);
-            Category nosql = getCategory("NoSQL", graph);
-            Category microService = getCategory("Micro Service", graph);
-
-            Book effectiveJava = getBook("Effective Java", graph);
-            Book nosqlDistilled = getBook("NoSQL Distilled", graph);
-            Book migratingMicroservice = getBook("Migrating to Microservice Databases", graph);
-            Book shack = getBook("The Shack", graph);
+            Book effectiveJava = service.book("Effective Java");
+            Book nosqlDistilled = service.book("NoSQL Distilled");
+            Book migratingMicroservice = service.book("Migrating to Microservice Databases");
+            Book shack = service.book("The Shack");
 
 
+            service.category(java, software);
+            service.category(nosql, software);
+            service.category(microService, software);
 
-            graph.edge(java, "is", software);
-            graph.edge(nosql, "is", software);
-            graph.edge(microService, "is", software);
+            service.category(effectiveJava, software);
+            service.category(nosqlDistilled, software);
+            service.category(migratingMicroservice, software);
 
-            graph.edge(effectiveJava, "is", software);
-            graph.edge(nosqlDistilled, "is", software);
-            graph.edge(migratingMicroservice, "is", software);
+            service.category(effectiveJava, java);
+            service.category(nosqlDistilled, nosql);
+            service.category(migratingMicroservice, microService);
 
-            graph.edge(effectiveJava, "is", java);
-            graph.edge(nosqlDistilled, "is", nosql);
-            graph.edge(migratingMicroservice, "is", microService);
+            service.category(shack, romance);
 
+            List<String> softwareCategories =service.softwareCategories();
 
-            graph.edge(shack, "is", romance);
+            List<String> softwareBooks = service.softwareBooks();
 
-            thinkerpop.tx().commit();
-
-            List<String> softwareCategories = graph.traversalVertex().hasLabel("Category")
-                    .has("name", "Software")
-                    .in("is").hasLabel("Category").<Category>result()
-                    .map(Category::getName)
-                    .collect(toList());
-
-            List<String> softwareBooks = graph.traversalVertex().hasLabel("Category")
-                    .has("name", "Software")
-                    .in("is").hasLabel("Book").<Book>result()
-                    .map(Book::getName)
-                    .collect(toList());
-
-            List<String> sofwareNoSQLBooks = graph.traversalVertex().hasLabel("Category")
-                    .has("name", "Software")
-                    .in("is")
-                    .has("name", "NoSQL")
-                    .in("is").<Book>result()
-                    .map(Book::getName)
-                    .collect(toList());
+            List<String> softwareNoSQLBooks = service.softwareNoSQLBooks();
 
 
             System.out.println("The software categories: " + softwareCategories);
             System.out.println("The software books: " + softwareBooks);
-            System.out.println("The software and NoSQL books: " + sofwareNoSQLBooks);
+            System.out.println("The software and NoSQL books: " + softwareNoSQLBooks);
 
 
         }
-    }
-
-    private static Category getCategory(String name, GraphTemplate graph) {
-        return graph.traversalVertex().hasLabel("Category")
-                .has("name", name)
-                .<Category>next()
-                .orElseThrow(() -> new IllegalStateException("Entity does not find"));
-    }
-
-    private static Book getBook(String name, GraphTemplate graph) {
-        return graph.traversalVertex().hasLabel("Book")
-                .has("name", name)
-                .<Book>next()
-                .orElseThrow(() -> new IllegalStateException("Entity does not find"));
     }
 }
