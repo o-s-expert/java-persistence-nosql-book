@@ -19,7 +19,6 @@ import jakarta.nosql.document.DocumentTemplate;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class App3 {
@@ -33,7 +32,7 @@ public class App3 {
             Faker faker = new Faker();
             Address address = new Address(faker.address().streetName(), faker.address().city());
             Job job = new Job(12.12, faker.job().title());
-            Person person = Person.builder().
+            Author author = Author.builder().
                     withPhones(Arrays.asList(faker.phoneNumber().cellPhone(), faker.phoneNumber().cellPhone()))
                     .withName(faker.name().fullName())
                     .withAddress(address)
@@ -41,10 +40,10 @@ public class App3 {
                     .withId(id).build();
 
             DocumentTemplate template = container.select(DocumentTemplate.class).get();
-            Person saved = template.insert(person);
+            Author saved = template.insert(author);
             System.out.println("Person saved" + saved);
 
-            List<Person> people = template.select(Person.class)
+            List<Author> people = template.select(Author.class)
                     .where("address.city").eq(address.getCity()).result();
 
             System.out.println("Entities found: " + people);

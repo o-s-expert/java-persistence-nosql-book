@@ -20,7 +20,7 @@ import java.util.List;
 
 
 @Entity
-public class Person {
+public class Author {
 
     @Id
     private Long id;
@@ -51,10 +51,10 @@ public class Person {
     }
 
 
-    public Person() {
+    public Author() {
     }
 
-    Person(long id, String name, List<String> phones, Address address, Job job) {
+    Author(long id, String name, List<String> phones, Address address, Job job) {
         this.id = id;
         this.name = name;
         this.phones = phones;
@@ -74,7 +74,7 @@ public class Person {
         return sb.toString();
     }
 
-    public static PersonBuilder builder() {
-        return new PersonBuilder();
+    public static AuthorBuilder builder() {
+        return new AuthorBuilder();
     }
 }

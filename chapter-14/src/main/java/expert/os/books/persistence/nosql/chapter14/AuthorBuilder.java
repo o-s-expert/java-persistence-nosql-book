@@ -14,7 +14,7 @@ package expert.os.books.persistence.nosql.chapter14;
 import java.util.List;
 
 
-public class PersonBuilder {
+public class AuthorBuilder {
 
     private long id;
 
@@ -26,33 +26,33 @@ public class PersonBuilder {
 
     private Job job;
 
-    public PersonBuilder withId(long id) {
+    public AuthorBuilder withId(long id) {
         this.id = id;
         return this;
     }
 
-    public PersonBuilder withName(String name) {
+    public AuthorBuilder withName(String name) {
         this.name = name;
         return this;
     }
 
 
-    public PersonBuilder withPhones(List<String> phones) {
+    public AuthorBuilder withPhones(List<String> phones) {
         this.phones = phones;
         return this;
     }
 
-    public PersonBuilder withAddress(Address address) {
+    public AuthorBuilder withAddress(Address address) {
         this.address = address;
         return this;
     }
 
-    public PersonBuilder withJob(Job job) {
+    public AuthorBuilder withJob(Job job) {
         this.job = job;
         return this;
     }
 
-    public Person build() {
-        return new Person(id, name, phones, address, job);
+    public Author build() {
+        return new Author(id, name, phones, address, job);
     }
 }

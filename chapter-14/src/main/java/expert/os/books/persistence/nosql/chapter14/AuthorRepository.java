@@ -20,9 +20,9 @@ import java.util.stream.Stream;
 
 
 @Repository
-public interface PersonRepository extends PageableRepository<Person, Long> {
-    List<Person> findByName(String name);
+public interface AuthorRepository extends PageableRepository<Author, Long> {
+    List<Author> findByName(String name);
 
-    Stream<Person> findByPhones(String phone);
+    Stream<Author> findByPhones(String phone);
 
 }
