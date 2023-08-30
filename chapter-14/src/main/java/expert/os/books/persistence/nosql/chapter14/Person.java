@@ -9,7 +9,7 @@
  * You may elect to redistribute this code under either of these licenses.
  */
 
-package expert.os.books.persistence.nosql.chapter13;
+package expert.os.books.persistence.nosql.chapter14;
 
 
 import jakarta.nosql.Column;
@@ -17,7 +17,6 @@ import jakarta.nosql.Entity;
 import jakarta.nosql.Id;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 

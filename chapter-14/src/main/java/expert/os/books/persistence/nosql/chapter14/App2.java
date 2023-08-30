@@ -9,7 +9,7 @@
  * You may elect to redistribute this code under either of these licenses.
  */
 
-package expert.os.books.persistence.nosql.chapter13;
+package expert.os.books.persistence.nosql.chapter14;
 
 
 import com.datastax.oss.driver.api.core.ConsistencyLevel;
@@ -18,11 +18,8 @@ import jakarta.enterprise.inject.se.SeContainerInitializer;
 import jakarta.nosql.column.ColumnTemplate;
 import org.eclipse.jnosql.databases.cassandra.mapping.CassandraTemplate;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 

@@ -9,23 +9,23 @@
  * You may elect to redistribute this code under either of these licenses.
  */
 
-package expert.os.books.persistence.nosql.chapter13;
+package expert.os.books.persistence.nosql.chapter14;
 
 
 import jakarta.enterprise.inject.se.SeContainer;
 import jakarta.enterprise.inject.se.SeContainerInitializer;
 import jakarta.nosql.column.ColumnTemplate;
 
-import java.time.Duration;
 import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
+
+import static org.eclipse.jnosql.mapping.DatabaseQualifier.ofColumn;
 
 
-public class App {
+public class App3 {
 
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args){
 
         try(SeContainer container = SeContainerInitializer.newInstance().initialize()) {
 
@@ -34,28 +34,15 @@ public class App {
                             "youtube", "otaviojava"))
                     .name("Otavio Santana").id(1).build();
 
-            Person elderjava = Person.builder()
-                    .contacts(Map.of("twitter", "elderjava", "linkedin", "elderjava",
-                            "youtube", "elderjava"))
-                    .name("Elder Moraes").id(2).build();
 
-            ColumnTemplate template =  container.select(ColumnTemplate.class).get();
-            template.insert(otaviojava);
+            PersonRepository repository = container.select(PersonRepository.class).get();
+            repository.save(otaviojava);
 
-            template.insert(elderjava, Duration.ofSeconds(1));
-
-            System.out.println("The elder find: " + template.find(Person.class, 2L));
-
-            TimeUnit.SECONDS.sleep(2L);
-
-            System.out.println("The elder find: " + template.find(Person.class, 2L));
-
-            Optional<Person> person = template.select(Person.class)
-                    .where("id").eq(1L).singleResult();
+            Optional<Person> person = repository.findById(1L);
             System.out.println("Entity found: " + person);
 
         }
     }
 
-    private App() {}
+    private App3() {}
 }

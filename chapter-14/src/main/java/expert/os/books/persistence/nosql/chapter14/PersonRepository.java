@@ -9,13 +9,11 @@
  * You may elect to redistribute this code under either of these licenses.
  */
 
-package expert.os.books.persistence.nosql.chapter13;
+package expert.os.books.persistence.nosql.chapter14;
 
 
 import jakarta.data.repository.CrudRepository;
 import jakarta.data.repository.Repository;
-
-import java.util.List;
 
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Long> {
