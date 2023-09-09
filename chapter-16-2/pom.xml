@@ -36,7 +36,7 @@
         </dependency>
         <dependency>
             <groupId>org.eclipse.jnosql.databases</groupId>
-            <artifactId>jnosql-arangodb</artifactId>
+            <artifactId>jnosql-couchbase</artifactId>
             <version>${jnosql.version}</version>
         </dependency>
         <dependency>
