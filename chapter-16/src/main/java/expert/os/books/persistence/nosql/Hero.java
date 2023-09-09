@@ -20,7 +20,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-public class Hero implements Serializable {
+public class Hero  {
 
     @Id
     private String id;

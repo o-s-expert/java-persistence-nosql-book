@@ -36,8 +36,7 @@ public class App1 {
             ArangoDBTemplate template = container.select(ArangoDBTemplate.class).get();
             template.insert(ironMan);
 
-            DocumentQuery query = select().from("Hero").where("_key").eq("iron_man").build();
-            List<Hero> heroes = template.<Hero>select(query).collect(Collectors.toList());
+            List<Hero> heroes = template.select(Hero.class).where("_key").eq("iron_man").result();
             List<Hero> aql = template.<Hero>aql("FOR h IN Hero FILTER  h.name == @id RETURN h", Collections.singletonMap("id", "iron_man"))
                     .collect(Collectors.toList());
             System.out.println(heroes);
