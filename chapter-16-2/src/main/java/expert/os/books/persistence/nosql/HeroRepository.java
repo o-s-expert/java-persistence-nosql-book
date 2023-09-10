@@ -15,19 +15,12 @@ import org.eclipse.jnosql.databases.couchbase.mapping.CouchbaseRepository;
 import org.eclipse.jnosql.databases.couchbase.mapping.N1QL;
 import org.eclipse.jnosql.databases.couchbase.mapping.Param;
 
-import java.util.Optional;
-import java.util.stream.Stream;
+import java.util.List;
 
 @Repository
 public interface HeroRepository extends CouchbaseRepository<Hero, String> {
 
-    Stream<Hero> findByAgeGreaterThan(Integer age);
-
-    Stream<Hero> findByAgeLessThan(Integer age);
-
-    void deleteByName(String name);
-
     @N1QL("select * from heroes._default.Hero where realName= $realName")
-    Optional<Hero> find(@Param("realName") String realName);
+    List<Hero> find(@Param("realName") String realName);
 
 }

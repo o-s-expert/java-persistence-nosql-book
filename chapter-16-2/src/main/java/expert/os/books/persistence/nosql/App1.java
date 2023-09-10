@@ -36,8 +36,7 @@ public class App1 {
             CouchbaseTemplate couchbaseTemplate = container.select(CouchbaseTemplate.class).get();
             couchbaseTemplate.insert(ironMan);
 
-            DocumentQuery query = select().from("Hero").where("_id").eq("iron_man").build();
-            List<Hero> heroes = couchbaseTemplate.<Hero>select(query).collect(Collectors.toList());
+            List<Hero> heroes = couchbaseTemplate.<Hero>n1qlQuery("select * from heroes._default.Hero where name= \"iron_man\"").toList();
             System.out.println(heroes);
 
         }
